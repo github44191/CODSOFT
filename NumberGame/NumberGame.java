@@ -11,15 +11,15 @@ public class NumberGame {
         int guess;
         int attempts = 0;
         int maxAttempts = 10;
-        int points = 100;
+        int points = 110;
         String userWish;
-        boolean wish = true;
+        boolean wish = true, guessed = false;
         
         while (wish) {
             int randomNumber = random.nextInt(maxNumber) + 1;
             System.out.println("Welcome to the Number Guessing Game!");
             System.out.println("I have selected a random number between 1 and " + maxNumber);
-            System.out.println("Can you guess what it is within 10 attempts ?");
+            System.out.println("Can you guess what it is within 10 attempts?");
             
             while (attempts < maxAttempts) {
                 System.out.print("Enter your guess: ");
@@ -38,16 +38,19 @@ public class NumberGame {
                 } else {
                     System.out.println("Congratulations! You did it !! You've guessed the number " + randomNumber + " in " + attempts + " attempts.");
                     System.out.println("You've scored " + points + " points.");
+                    guessed = true;
                     break;
                 }
             }
-            if (attempts == maxAttempts) {
+            if (attempts == maxAttempts && guessed == false) {
                 System.out.println("Sorry! You've finished all your attempts. Good Luck Next Time !!!");
+            }
+            if (attempts == maxAttempts || guessed) {
                 System.out.println("Do you wish to continue... (Y/N)");
                 userWish = scanner.next();
                 if (userWish.equalsIgnoreCase("Y")) {
                     attempts = 0;
-                    points = 100;
+                    points = 110;
                     wish=true;
                 }
                 else {
