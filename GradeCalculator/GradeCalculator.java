@@ -10,7 +10,7 @@ public class GradeCalculator {
     System.out.print("Enter the number of subjects you have : ");
     subjects = scanner.nextInt();
     String[] subjectNames = new String[subjects];
-    System.out.print("Enter the name of the subjects: ");
+    System.out.print("Enter the name of the subjects: \n");
     for (int i = 0; i < subjectNames.length; i++) {
       subjectNames[i] = scanner.next();
     }

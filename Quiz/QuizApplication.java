@@ -14,6 +14,7 @@ public class QuizApplication {
         Scanner scanner = new Scanner(System.in);
         int score = 0;
         int questionTimeLimit = 10;
+        List<Boolean> results = new ArrayList<>();
 
         for (Question question : questions) {
             System.out.println(question.getQuestionText());
@@ -36,11 +37,14 @@ public class QuizApplication {
 
             if (quizTimer.isTimeUp()) {
                 System.out.println("You ran out of time for this question.");
+                results.add(false);
             } else if (question.isCorrect(userAnswer)) {
                 System.out.println("Correct Answer!");
                 score+=10;
+                results.add(true);
             } else {
                 System.out.println("Wrong Answer!");
+                results.add(false);
             }
 
             System.out.println();
@@ -52,6 +56,14 @@ public class QuizApplication {
         }
         else if (score == 0) {
             System.out.println("Good Luck Next Time \n :(");
+        }
+        System.out.println("\nSummary:");
+        for (int i = 0; i < questions.size(); i++) {
+            Question question = questions.get(i);
+            System.out.println("Q" + (i + 1) + ": " + question.getQuestionText());
+            System.out.println("Your answer: " + (results.get(i) ? "Correct" : "Incorrect"));
+            System.out.println("Correct answer: " + question.getOptions().get(question.getCorrectOption()));
+            System.out.println();
         }
         scanner.close();
     }
